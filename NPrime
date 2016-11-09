@@ -1,0 +1,28 @@
+#include<stdio.h>
+
+int main()
+{
+
+printf("\tNPrime");
+    int n,i;
+    do{
+        printf("\n Input your number which is more or equal then 2: ");
+        scanf("\n %d", &n);
+    }
+    while(n<=2);
+    i=2;
+
+    while(n%i!=0)
+        {
+            i++;
+        }
+
+    if(n==i){
+    printf("\n It is prime.");
+
+    }else{
+    printf("\n It is not prime.");
+    }
+    
+return 0;
+}
