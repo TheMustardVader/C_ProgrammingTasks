@@ -1,0 +1,63 @@
+#include<stdio.h>
+
+int main()
+{
+
+ printf("\tCalculator");
+    float n,cal;
+    char c;
+
+    printf("\nn: ");
+    scanf("%f",&n);
+    cal=n;
+    do
+    {
+        printf("o: ");
+        c=getche();
+        if(c != '=')
+        {
+            printf("\nn: ");
+            scanf("%f",&n);
+        }
+        switch(c)printf("\tBackSide");
+    int n,m;
+    do{
+        printf("Input your  N number: ");
+        scanf("%d",&n);
+
+    }while(n<=0);
+      m=0;
+        while(n>0){
+            m=n%10+m*10;
+            n=n/10;
+        }
+        printf("Your opposite number = %d",m);
+        {
+            case '+': cal+=n;
+            break;
+
+            case '-': cal-=n;
+            break;
+
+            case '*': cal*=n;
+            break;
+
+            case '/': cal/=n;
+            break;
+
+            case '=':
+            printf("%f", cal);
+            break;
+
+            default:
+                printf("Mistake\n");
+                break;
+        }
+        if(c=='/' && n==0)
+        {
+            printf("Error");
+            break;
+        }
+    }while(c!='=');
+return 0;
+}
