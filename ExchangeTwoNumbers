@@ -1,0 +1,18 @@
+#include<stdio.h>
+
+int main(){
+
+ printf("\t Exchange Two Numbers");
+    int a,b;
+    printf("Input first value(a):");
+    scanf("%d", &a);
+    printf("Input next value(b):");
+    scanf("%d", &b);
+    a=a+b;
+    b=a-b;
+    a=a-b;
+    printf("a : %d", a);
+    printf("b : %d", b);
+
+return 0;
+}
