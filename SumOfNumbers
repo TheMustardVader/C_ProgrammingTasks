@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+int main()
+{ 
+
+printf("\t Summation of N numbers");
+    //n = count of numbers
+    //a = an entered number
+    int n,count,sum,a;
+    printf("\n Input N:");
+    scanf("%d", &n);
+    count=0;
+    sum=0;
+    do{
+        printf("Input a number:");
+        scanf("%d", &a);
+        sum+=a;
+        count++;
+    }while(count < n);
+    printf("\n sum = %d\n", sum);
+
+return 0;
+}
