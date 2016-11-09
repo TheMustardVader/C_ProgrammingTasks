@@ -1,0 +1,12 @@
+#include<stdio.h>
+
+int main(){
+    printf("\tSummation of N numbers (1 to n)\n");
+    int sum,count,n;
+    printf("\nPlease input N:");
+    scanf("%d", &n);
+    sum=0;
+    for(count=1;count<=n;count++)sum+=count;
+    printf("\nSum = %d", sum);
+return 0;
+}
