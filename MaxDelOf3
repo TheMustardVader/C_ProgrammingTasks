@@ -1,0 +1,33 @@
+#include<stdio.h>
+
+int main(){
+
+ printf("\tMaxDelOf3");
+    int n,max,i,a;
+    do
+    {
+        printf("Input N:");
+        scanf("%d",&n);
+    }while(n<=0 || n>100);
+    for(i=0;a%3!=0 && i<n;i++)
+    {
+        printf("Input a:");
+        scanf("%d",&a);
+    }
+    max=a;
+   for(;i<n;i++)
+    {
+        printf("Input a:");
+        scanf("%d",&a);
+        if(max<a)
+        {
+            if(a%3==0) max=a;
+        }
+    }
+    if(max%3!=0)
+    {
+        printf("You haven't divisor");
+    }
+    else printf("Your maximum divisor is:%d",max);
+return 0;
+}
