@@ -1,0 +1,443 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct
+{
+    int num;
+    char name[50];
+    int marks[30];
+    float avr;
+} students;
+students s;
+
+typedef struct {
+    char filename[100];
+    int filenum;
+}names;
+names std;
+
+
+int bru=50;
+int brp=30;
+int option = 9;
+int studentdelnum=0;
+int empty=1;
+int i=0;
+int j,k;
+
+void Finsert();
+void FWrite();
+void FRead();
+void FdeleteTemp();
+void Fhistory();
+void FdeleteFile();
+void Fsort();
+
+char menu[9][20]=
+{
+
+    {"\tMenu "},
+    {"1.Create file "},
+    {"2.Read file "},
+    {"3.Insert student"},
+    {"4.Delete student " },
+    {"5.Delete file"},
+    {"6.History "},
+    {"7.Sort name"},
+    {"8.Quit the file "}
+};
+
+int main()
+{
+    int pr=1;
+    int quit = 0;
+    int i,a,j;
+
+    while(!quit)
+    {
+    system("cls");
+    system("color 07");
+    for(i=0;i<option+1;i++){
+    if(pr==i)printf("->");else printf("  ");
+
+        for(j=0;menu[i][j]!='\0';j++){
+            printf("%c", menu[i][j]);
+            }
+            printf("\n");
+    }
+        //a=getch();
+       //if(a==0)
+        //{
+            a=getch();
+            if(a==80){
+
+                if(pr<option-1){
+                        pr++;
+                    }else pr=1;
+                }
+            if(a==72)
+            {
+                if(pr>1)pr--;
+                else pr = option-1;
+            }
+       // }
+
+        if(a==13)
+        {
+            switch(pr)
+            {
+
+            case 1:
+                FWrite();
+                break;
+            case 2:
+                FRead();
+                break;
+            case 3:
+                Finsert();
+                break;
+            case 4:
+                FdeleteTemp();
+                break;
+            case 5:
+                FdeleteFile();
+                break;
+            case 6:
+                Fhistory();
+                break;
+            case 7:
+                Fsort();
+                break;
+            case 8: quit++;
+                break;
+            }
+        }
+    }
+
+    return 0;
+}
+
+void Finsert()
+{
+    int i,j;
+    FILE *f;
+
+    printf("Insert file name: \n");
+    gets(std.filename);
+    strcat(std.filename,".txt");
+    f = fopen(std.filename,"ab");
+
+    if(f){
+
+            system("cls");
+        for(i=0; i<bru; i++)
+        {
+            printf("When you press key '0', you will end the process...\n");
+            printf("number: ");
+            scanf("%d", &s.num);
+            if(s.num==0)break;
+            printf("name: ");
+            getchar();
+            gets(s.name);
+            s.avr=0;
+
+            for(j=0; j<brp; j++)
+            {
+
+               // printf("Enter the student's marks. If you want to stop press '0' key");
+                        printf("mark: ");
+                      scanf("%d",&s.marks[j]);
+                    if(s.marks[j]<0)printf("Invalid input... Please enter another mark\n ");
+                if(s.marks[j]==0)break;
+                s.avr += s.marks[j];
+            }
+            s.avr=s.avr/j;
+            fwrite(&s,sizeof(s),1,f);
+
+        }
+ }fclose(f);
+}
+void FWrite()
+{
+    int i,j;
+
+    FILE *f;
+    FILE *h;
+    h = fopen("history.dox","wb");
+    if(h){
+
+        printf("Enter file name: \n");
+        gets(std.filename);
+        strcat(std.filename,".txt");
+        if(empty){
+                std.filenum ++;
+                }else{
+                 std.filenum=1;
+                }
+        fwrite(&std,sizeof(std),1,h);
+
+          }  fclose(h);
+    f = fopen(std.filename,"wb");
+
+    system("cls");
+    if(f)
+    {
+
+        for(i=0; i<bru; i++)
+        {
+            system("cls");
+            printf("When you press key '0', you will end the process...\n");
+            printf("\nnumber: ");
+            scanf("%d", &s.num);
+            if(s.num==0)break;
+            printf("name: ");
+            getchar();
+            gets(s.name);
+
+            s.avr=0;
+
+            for(j=0; j<brp; j++)
+            {
+                system("color 07");
+                //printf("Enter the student's marks. If you want to stop press '0' key");
+                    do{
+                        printf("mark: ");
+                        scanf("%d",&s.marks[j]);
+                        if(s.marks[j]<0||s.marks[j]>6){
+                                system("color B");
+                                printf("\nInvalid input... Please enter another mark\n");
+                        }
+
+
+                    }while(s.marks[j]<0||s.marks[j]>6);
+
+                if(s.marks[j]==0)break;
+                s.avr += s.marks[j];
+            }
+            if(s.marks[1]!=0)s.avr=s.avr/j;
+            fwrite(&s,sizeof(s),1,f);
+
+        }fclose(f);
+
+}
+else  printf("ERROR!");getchar();
+
+}
+void FRead()
+{
+    int k;
+    FILE *f;
+    system("cls");
+    f = fopen(std.filename,"rb");
+
+    if(f)
+    {
+        while(!feof(f))
+        {
+            if(fread(&s,sizeof(s),1,f))
+            {
+                printf("\n%-3d %-18s",s.num,s.name);
+                for(k=0; k<20; k++)
+                {
+                    if(s.marks[k]==0)break;
+                    printf(" %d ",s.marks[k]);
+                }
+                printf("  %-3f",s.avr);
+            }
+        }
+         fclose(f);
+    }
+    else{ system("color 4");printf("You have ERROR!");}
+    printf("\nPress any key to continue...");
+    getchar();
+}
+
+void FdeleteTemp(){
+int k;
+FILE *f;
+FILE *r;
+Fhistory();
+system("color 07");
+
+printf("Insert file name: \n");
+        gets(std.filename);
+        strcat(std.filename,".txt");
+f = fopen(std.filename,"rb");
+
+        if(f){
+
+                while(!feof(f)){
+
+                    if(fread(&s,sizeof(s),1,f)){
+
+                       printf("\n%-3d %-18s",s.num,s.name);
+                        for(k=0; k<20; k++)
+                        {
+                            if(s.marks[k]==0)break;
+                            printf(" %d ",s.marks[k]);
+                        }
+                        printf("  %-3f",s.avr);
+                    }
+                }
+            fclose(f);
+        }
+
+            do{
+                    printf("\nWhat is number the student you want to delete?\n");
+                    scanf("%d", &studentdelnum);
+              }while(studentdelnum<=0);
+
+                f = fopen(std.filename,"rb");
+
+                if(f){
+                    r = fopen("temp.dox","wb");
+                        if(r){
+                            while(!feof(f)){
+                             if(fread(&s,sizeof(s),1,f)){
+                                if(s.num!=studentdelnum){
+                                    fwrite(&s,sizeof(s),1,r);
+                                }
+                            }
+                        }fclose(r);
+                }fclose(f);
+            }
+
+
+        r = fopen("temp.dox","rb");
+        if(r){
+            f = fopen(std.filename,"wb");
+             if(f){
+                while(!feof(r)){
+                    if(fread(&s,sizeof(s),1,r)){
+                        fwrite(&s,sizeof(s),1,f);
+                    }
+                }fclose(f);
+            }fclose(r);
+        }
+
+         printf("\nOk! It's ready!");getche();
+}
+
+void Fhistory(){
+    FILE *h;
+
+    //int th = 1;
+    //int a;
+    //int ready = 0;
+
+    h = fopen("history.dox","rb");
+    system("cls");
+
+    empty=0;
+    if(h){
+        //while(!ready){
+
+                printf("\tHistory\n");
+         while(!feof(h)){
+                if(fread(&std,sizeof(std),1,h)){
+                        system("color A");
+                        empty=1;
+
+                        /*if(th=0)printf("->");else printf("  "); */printf("%d %s\n",std.filenum,std.filename);//th--;
+                }
+         }fclose(h);
+
+          /*  a = getche();
+            if(a=80)th++;
+            else th = 0;
+            if(a=72)th--;
+            else th = 0;
+
+            if(a=32)ready=1;
+
+        }*/
+        empty=1;
+        getchar();
+    }else{
+        system("cls");
+        system("color A");
+        printf("The folder is empty! Press any key to continue...");getchar();
+    }
+}
+
+void FdeleteFile(){
+    FILE *h;
+    FILE *r;
+    int fileDel;
+
+    Fhistory();
+    system("color 07");
+    printf("\nWhich file would you like to delete? Please enter the number: ");
+        scanf("%d",&fileDel);
+    h = fopen("history.dox","rb");
+    if(h){
+                r = fopen("temp.dox","wb");
+            if(r){
+                while(!feof(h)){
+                    if(fread(&std,sizeof(std),1,h)){
+
+                          if(fileDel!=std.filenum)
+                            fwrite(&std,sizeof(std),1,r);
+                    }
+                }
+            }fclose(r);
+
+    }fclose(h);
+
+    r = fopen("temp.dox","rb");
+        if(r){
+            h = fopen("history.dox","wb");
+            if(h){
+                while(!feof(r)){
+                    if(fread(&std,sizeof(std),1,r)){
+                        fwrite(&std,sizeof(std),1,h);
+                    }
+                }
+            }fclose(h);
+        }fclose(r);
+}
+void Fsort(){
+    students s[100];
+    FILE *h;
+    FILE *r;
+    int sorted = 0;
+    students swap;
+
+
+            h = fopen(std.filename,"rb");
+    if(h){
+         i=0;
+        while(!feof(h)){
+
+                    fread(&s[i],sizeof(s[i]),1,h);
+                    i++;
+
+                }fclose(h);
+
+    }else printf("\nThis file doesn't exist!");
+
+     j=0;
+    while(!sorted){
+          sorted = 1;
+
+        for(k = 0; k < i + 1 - j; k++){
+            swap = s[i];
+            s[i] = s[i+1];
+            s[i+1] = swap;
+            sorted = 0;
+        }
+        j++;
+
+     }
+    r = fopen(std.filename,"wb");
+    if(r){
+
+        for(k=0; k < i+1; k++){
+            fwrite(&s[k],sizeof(s[k]),1,r);
+        }fclose(r);
+
+    }else printf(" It doesn't work! Please try again! ");getchar();
+
+    printf("Press enter to continue...");getchar();
+}
