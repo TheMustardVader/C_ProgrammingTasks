@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct point_t{
+ int x;
+ int y;
+}a,b;
+
+int sum_pointers(int x, int y);
+
+int main()
+{
+    scanf("%d%d%d%d", &a.x, &a.y, &b.x, &b.y);
+    printf("%d\n",sum_pointers(a.x, a.y));
+    printf("%d\n",sum_pointers(b.x, b.y));
+    return 0;
+}
+
+int sum_pointers(int x, int y){
+ int sum  = 0;
+ sum = x + y;
+ return sum;
+ }
