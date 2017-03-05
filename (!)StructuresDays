@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+struct datetime_t{
+    int month; // range 1 to 30 days
+    int day; // range 1 to 24 hours
+    int hours; //range 0 to 60 minutes
+    int min; //range 0 to 60
+
+};
+
+struct devidedDate{
+ struct datetime_t numB[2];
+ int dateNum;
+ int maxDateNum;
+};
+
+struct devidedDate add_numbers(struct datetime_t numB);
+void print_timeNum(struct datetime_t);
+
+
+
+int main ()
+{
+    struct datetime_t num;
+    scanf("%d", &num.month);
+    scanf("%d", &num.day);
+    scanf("%d", &num.hours);
+    scanf("%d", &num.min);
+
+    print_timeNum(num);
+    struct devidedDate DayDate;
+    DayDate.dateNum = 0;
+    DayDate.maxDateNum = 2;
+
+    devidedDate = add_numbers(DayDate);
+        return 0;
+}
+
+struct davidedDate add_numbers(struct devidedDate DayDate ){
+    if(DayDate.dateNum < DayDate.maxDateNum){
+       DayDate.numB[DayDate.dateNum] = num;
+       DayDate.dateNum ++;
+    }
+    return DayDate;
+}
+void print_timeNum(struct datetime_t num){
+ printf("Month: %d\nDay: %d\nHours: %d\nMin: %d\n",num.month, num.day, num.hours, num.min);
+}
+
