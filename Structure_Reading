@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+struct tm_t {
+   int tm_sec;         /* seconds,  range 0 to 59          */
+   int tm_min;         /* minutes, range 0 to 59           */
+   int tm_hour;        /* hours, range 0 to 23             */
+   char tm_mday[20];   /* day of the month Monday...Sunday  */
+   char tm_mon[20];     /* month, January, February, March, April... December */
+   int tm_year;        /* The number of years since 1900   */
+   int tm_wday;        /* day of the week, range 0 to 6    */
+   int tm_yday;        /* day in the year, range 0 to 365  */
+   int tm_isdst;       /* daylight saving time             */
+}a;
+
+int time_set(struct tm_t ,struct tm_t,struct tm_t,struct tm_t,struct tm_t,struct tm_t,struct tm_t,struct tm_t,struct tm_t);
+
+int main ()
+{
+scanf("%d",& a.tm_sec);
+scanf("%d",&a.tm_min);
+scanf("%d",&a.tm_hour);
+scanf("%s",a.tm_mday);
+scanf("%s",a.tm_mon);
+scanf("%d",&a.tm_year);
+scanf("%d",&a.tm_wday);
+scanf("%d",&a.tm_yday);
+scanf("%d",&a.tm_isdst);
+
+   return 0;
+}
