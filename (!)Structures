@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct bike_t{
+ int tire_size;
+ int gears;
+ char brand[50];
+ char model[15];
+ char frame_size;
+ float price;
+};
+
+struct bikeshop_t{
+ struct bike_t bikes[50];
+ int total_bikes;
+ int max_bikes;
+};
+
+void print_bike(struct bike_t bicycle);
+struct bikeshop_t add_bike(struct bikeshop_t shop, struct bike_t bike);
+float avrg_bike_price(struct bikeshop_t);
+
+int main()
+{
+ struct bike_t bike;
+
+ scanf("%d", &bike.tire_size);
+ scanf("%d", &bike.gears);
+ getchar();
+ scanf("%s",bike.brand);
+ scanf("%s",bike.model);
+ getchar();
+ scanf("%c", &bike.frame_size);
+ scanf("%f", &bike.price);
+
+ print_bike(bike);
+
+ struct bikeshop_t bikeshop;
+ bikeshop.total_bikes = 0;
+ bikeshop.max_bikes = 50;
+
+ bikeshop = add_bike(bikeshop, bike);
+
+ print_bike(bikeshop.bikes[bikeshop.total_bikes-1]);
+
+
+    return 0;
+}
+
+void print_bike(struct bike_t bicycle){
+ printf("Tires: %d\nGears: %d\nBrand %s\nModel: %s\nFrame size: %c\nPrice: %f\n", bicycle.tire_size, bicycle.gears,
+         bicycle.brand, bicycle.model, bicycle.frame_size, bicycle.price);
+}
+
+struct bikeshop_t add_bike(struct bikeshop_t shop, struct bike_t bike){
+
+    if(shop.total_bikes < shop.max_bikes){
+        shop.bikes[shop.total_bikes] = bike;
+        shop.total_bikes++;
+    }
+
+     return shop;
+}
+
+float avrg_bike_price(struct bikeshop_t shop){
+ float total_price = 0;
+ int i;
+  for(i = 0; i < shop.total_bikes; i++){
+    total_price = total_price + shop.bikes[i].price;
+  }
+  return total_price/shop.total_bikes;
+}
