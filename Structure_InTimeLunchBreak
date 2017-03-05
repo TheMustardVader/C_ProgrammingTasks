@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+struct time_t{
+    int hours;
+    int min;
+}s;
+
+int is_lunch_break(int , int);
+
+int main ()
+{
+ struct time_t s;
+
+  scanf("%d", &s.hours);
+  scanf("%d", &s.min);
+  int a = s.hours;
+  int b = s.min;
+  int pass = is_lunch_break(a,b);
+
+  if(pass){
+        printf("Okay!");
+  }else{
+        printf("You don't have break.");
+  }
+
+ return 0;
+}
+
+int is_lunch_break( hours, min){
+
+if(hours < 12 || hours > 14 && min < 15 || min > 45)
+    return 0;
+  else
+    return 1;
+}
