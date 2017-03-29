@@ -9,4 +9,9 @@
   9   printf("%d\n", *Int);
  10   printf("%c\n", *Char);
  11   printf("%llu\n", *LLInt);
- 12 
+ 12    
+ 13  printf("%d\n",sizeof(int));
+ 14  printf("%d\n",sizeof(double));
+ 15  printf("%d\n",sizeof(char));
+ 16
+ 17 }
