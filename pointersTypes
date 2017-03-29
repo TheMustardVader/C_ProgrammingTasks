@@ -1,0 +1,12 @@
+  1 #include<stdio.h>
+  2 
+  3 int main(){
+  4 
+  5   int *Int;
+  6   char *Char;
+  7   long long int *LLInt;
+  8 
+  9   printf("%d\n", *Int);
+ 10   printf("%c\n", *Char);
+ 11   printf("%llu\n", *LLInt);
+ 12 
