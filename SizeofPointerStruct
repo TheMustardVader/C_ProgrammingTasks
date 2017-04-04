@@ -1,0 +1,18 @@
+#include<stdio.h>
+
+struct fchar_t{
+
+        char *chr;
+ };
+
+int main(){
+ struct fchar_t s;
+
+   printf("%p\n",(void*)s.chr);
+   printf("%d\n",sizeof(s));
+   printf("%d\n",sizeof(char));
+   printf("%d\n",sizeof(int));
+
+ return 0;
+}
+                                                                                                                
