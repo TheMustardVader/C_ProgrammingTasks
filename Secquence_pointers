@@ -1,0 +1,33 @@
+#include<stdio.h>
+
+int print_sequence(int* start, int* end){
+ int arr[10] = {1,2,3,4,5,6,7,8,9,0};
+ int ct = 0;
+
+  *end = *end == 0 ? 10 : *end;
+  *start = *start == 0 ? 10 : *start;
+  printf("\n");
+
+  if(*start > *end){
+   for(int i = *start - 2; i > *end - 1; i--){
+     printf("%d\n", arr[i]);
+   }
+  }else{
+   for(int i = *start; i <  *end - 1; i++){
+     printf("%d\n", arr[i]);
+     ct++;
+   }
+  }
+
+ return ct;
+}
+
+int main(){
+   int start, end;
+  scanf("%d", &start);
+  scanf("%d", &end);
+
+  int result =  print_sequence(&start, &end);
+  printf("count: %d\n", result);
+ return 0;
+}
