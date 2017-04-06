@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+void str_reverse(char* str){
+  int lenght = strlen(str);
+
+  for(int i = 0; i < lenght/2; i++){
+    char temp = str[i];
+    str[i] = str[lenght - i - 1];
+    str[lenght - i - 1] = temp;
+  }
+}
+
+int main(){
+ char *str;
+
+   str = malloc(20); //https://www.tutorialspoint.com/c_standard_library/c_function_malloc.htm
+   scanf("%20s", str);
+   str_reverse(str);
+   printf("%s\n", str);
+ return 0;
+}
