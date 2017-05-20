@@ -1,0 +1,50 @@
+#include <stdio.h>	
+#include <stdlib.h>
+#include <string.h>
+
+struct maintain_t{
+   int size;
+   int count;
+};
+
+int is_full(struct maintain_t);
+
+int main(int argc, const char *argv[]){
+	 struct maintain_t str; 
+	 str.count = 0;
+	 scanf("%d", &str.size);	
+
+    char *word =  malloc(str.size * sizeof(int));
+
+
+	char tmp;
+	while (scanf("%c", &tmp) != EOF) {
+			getchar();
+			word[str.count++] = tmp;
+
+			if(is_full(str)){
+					
+					char *ml = word;
+					word = malloc(str.size * sizeof(int));
+
+				    for(int i = 0; i < str.count; i++){
+				    			word[i] = ml[i];
+				    }
+                 free(ml);               					
+    
+			}									
+	}
+															
+        for (int i = str.size-1; i >= 0; i--) {
+        												
+               printf("%c", word[i]);
+
+		}	
+		free(word);
+
+	return 0;
+}
+
+int is_full(struct maintain_t s){
+		return s.size == s.count ? 1 : 0;
+}
