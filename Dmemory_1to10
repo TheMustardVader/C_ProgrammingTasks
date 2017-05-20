@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include <stdlib.h>
+
+int main(int argc, const char *argv[]){
+		int n = 10;
+		int *memory;
+    // memory allocated using malloc
+		memory = (int*)	malloc(n * sizeof(int));
+
+    // write your number here
+	   	for(int i = 0; i < n; i++){
+		 *(memory+i) = i+1; 
+	   	}
+        for(int i = 0; i < n; i++){
+        			printf("%d\n", *(memory+i));
+        }
+		free(memory);	
+	return 0;
+}
