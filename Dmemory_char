@@ -1,0 +1,30 @@
+#include <stdio.h>	
+#include <stdlib.h>
+
+int main(int argc, const char *argv[]){
+		int size;
+		char *arr;
+		
+   		scanf("%d", &size);
+        size++;
+
+        arr = malloc(size * sizeof(char));
+        
+		for(int i = 0; i < size; i++){
+		    	
+				//char tmp;
+		        //scanf("%c", &arr[i]);// &tmp);
+			    arr[i] = getchar();
+				//arr[i] = tmp;
+			    // printf("%c", arr[i]);
+		}
+
+        for (int i = size; i >= 0; i--) {
+        												
+               printf("%c", arr[i]);											
+		}
+
+		free(arr);
+
+	return 0;
+}
