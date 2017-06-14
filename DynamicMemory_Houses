@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+struct house_t{
+    int floors;
+    float currentArea;
+    int furniture;
+    };
+
+struct house_t buy_house(struct house_t house[10]);
+
+int main()
+{
+    struct house_t houses[10]; 
+    
+    houses[0].floors = 3;
+    houses[0].furniture = 1;
+    houses[0].currentArea = 1500;
+    
+    houses[1].floors = 2;
+    houses[1].furniture = 0;
+    houses[1].currentArea = 900;
+    
+    struct house_t h = buy_house(houses);
+            printf("%d\n%d\n%f\n", h.floors, h.furniture, h.currentArea);
+    
+    return 0;
+}
+
+struct house_t buy_house(struct house_t house[10]){
+    int i;
+    for( i = 0; i < 2; i++){
+        if((house[i].floors > 2)&&(house[i].furniture != 0)&&(house[i].currentArea > 1000)){
+                
+                        return house[i];
+           }
+    }
+}
