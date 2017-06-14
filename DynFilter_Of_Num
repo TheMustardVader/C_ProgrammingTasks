@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct dynamic_arr_t{
+ int* nums;
+ int size;
+};
+
+struct dynamic_arr_t generate(int number);
+void free_dynamic_arr(struct dynamic_arr_t*);
+struct dynamic_arr_t filter_even(struct dynamic_arr_t*);
+
+int main(){
+    struct dynamic_arr_t result = generate(5);
+    
+    printf("Result:\n%d\n", result.size);
+    
+    struct dynamic_arr_t even = filter_even(&result);
+    int i;
+    printf("Even numbers:\n");
+    for( i=0; i< even.size; i++)
+    printf("%d\n", even.nums[i]);
+    
+    free_dynamic_arr(&result);
+    free_dynamic_arr(&even);
+    
+    return 0;
+}
+
+struct dynamic_arr_t filter_even(struct dynamic_arr_t * dyn){
+    struct dynamic_arr_t resultEven = generate(dyn->size);
+    
+    int indexEven = 0;
+    int j;
+    for(j = 0; j < dyn->size; j++){
+        if(dyn->nums[j] % 2 == 0){
+            resultEven.nums[indexEven++] = dyn->nums[j];
+        }
+    }
+    resultEven.size = indexEven;
+    return resultEven;
+}
+
+void free_dynamic_arr(struct dynamic_arr_t* dyn){
+        free(dyn->nums);
+        dyn->size = 0;
+}
+
+struct dynamic_arr_t generate(int number){
+    struct dynamic_arr_t dyn;
+    
+    dyn.nums = malloc(number * sizeof(int)); 
+    dyn.size = number;
+    int i;
+    for( i = 0; i < number; i++){
+        dyn.nums[i] = i + 1;
+    }
+    
+    return dyn;
+}
