@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(int argc, const char *argv[]){
+	    char av;
+		double average = 0;
+		int count = 0;
+		while(scanf("%c",&av) != EOF){
+				count++;
+				average += (int)av;
+		}
+		printf("%d\n",count);
+		printf("%0.2f\n", average / count);
+	return 0;
+}
